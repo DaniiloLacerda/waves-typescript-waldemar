@@ -37,9 +37,7 @@ jobs:
       if: github.ref == 'refs/heads/master'
       name: Create SSH deployment key
       env:
-        SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        A01: ${{ secrets.VANESSA01 }}
-        A02: ${{ secrets.VANESSA02 }}
+        SSH_KEY: ${{ secrets.WAVES_KEY }}        
       run: ./scripts/deploy.sh
 
     - name: Deployment
