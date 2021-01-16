@@ -2,6 +2,7 @@
 
 # Init .ssh dir and expand $SSH_KEY
 mkdir -p ~/.ssh
+echo -e "TESTANDO"
 echo -e "${SSH_KEY//_/\\n}" > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 
