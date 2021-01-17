@@ -33,12 +33,19 @@ jobs:
     - name: Run all tests
       run: yarn test
     
-    - shell: bash
-      if: github.ref == 'refs/heads/master'
-      name: Create SSH deployment key
-      env:
-        SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}        
-      run: ./scripts/deploy.sh
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        name: id_rsa # optional
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}        
+
+    # - shell: bash
+    #   if: github.ref == 'refs/heads/master'
+    #   name: Create SSH deployment key
+    #   env:
+    #     SSH_KEY: ${{ secrets.SSH_PRIVATE }}
+    #   run: ./scripts/deploy.sh
 
     - name: Deployment
       if: github.ref == 'refs/heads/master'
