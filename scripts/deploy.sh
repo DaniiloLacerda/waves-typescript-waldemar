@@ -4,9 +4,10 @@
 mkdir -p ~/.ssh
 echo "antes"
 cat ~/.ssh/id_rsa
-echo -e "${SSH_KEY}" > ~/.ssh/id_rsa
+echo -e ${SSH_KEY} > ~/.ssh/id_rsa
 # echo "ssh key"
 # echo $WAVES_KEY
+echo "depois"
 cat ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 
