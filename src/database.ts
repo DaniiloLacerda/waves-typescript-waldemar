@@ -4,6 +4,8 @@ import mongoose, { Mongoose } from 'mongoose';
 const dbConfig: IConfig = config.get('App.database');
 
 export const connect = async (): Promise<Mongoose> => {
+  console.log('vai fazer a conexao URL');
+  console.log('dbconfig', dbConfig);  
   const conn = mongoose.connect(dbConfig.get('mongoUrl'), {
     useCreateIndex: true,
     useNewUrlParser: true,
