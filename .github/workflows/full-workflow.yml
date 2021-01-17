@@ -34,11 +34,11 @@ jobs:
       run: yarn test
     
     # - name: Install SSH key
-    #   uses: shimataro/ssh-key-action@v2
-    #   with:
-    #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-    #     name: id_rsa # optional
-    #     known_hosts: ${{ secrets.KNOWN_HOSTS }}        
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        name: id_rsa # optional
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}        
 
     # - shell: bash
     #   if: github.ref == 'refs/heads/master'
