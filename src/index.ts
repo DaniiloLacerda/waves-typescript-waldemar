@@ -2,7 +2,6 @@ import { SetupServer } from './server';
 import config from 'config';
 
 (async (): Promise<void> => {
-  console.log('URL MONGO', process.env.MONGODB_URL)
   const server = new SetupServer(config.get('App.port'));
   await server.init();
   server.start();
