@@ -13,7 +13,8 @@
         "test:functional": "jest --projects ./test --runInBand",
         "test:unit": "jest",
         "style:check": "prettier --check 'src/**/*.ts' 'test/**/*.ts'",
-        "style:fix": "prettier --write 'src/**/*.ts' 'test/**/*.ts'"
+        "style:fix": "prettier --write 'src/**/*.ts' 'test/**/*.ts'",
+        "deploy": "git push umbler master"
     },
     "repository": {
         "type": "git",

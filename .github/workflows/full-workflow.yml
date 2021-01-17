@@ -40,15 +40,15 @@ jobs:
     #     name: id_rsa # optional
     #     known_hosts: ${{ secrets.KNOWN_HOSTS }}        
 
-    - shell: bash
-      if: github.ref == 'refs/heads/master'
-      name: Create SSH deployment key
-      env:
-        SSH_KEY: ${{ secrets.SSH_KEY }}        
-      run: ./scripts/deploy.sh
+    # - shell: bash
+    #   if: github.ref == 'refs/heads/master'
+    #   name: Create SSH deployment key
+    #   env:
+    #     SSH_KEY: ${{ secrets.SSH_KEY }}        
+    #   run: ./scripts/deploy.sh
 
-    - name: Deployment
-      if: github.ref == 'refs/heads/master'
-      run: git remote add umbler ssh://git@geonosis.deploy.umbler.com:9922/j370225k/danilo-surf-forecast-com.git && git push umbler master
-      env:
-        CI: true
+    # - name: Deployment
+    #   if: github.ref == 'refs/heads/master'
+    #   run: git remote add umbler ssh://git@geonosis.deploy.umbler.com:9922/j370225k/danilo-surf-forecast-com.git && git push umbler master
+    #   env:
+    #     CI: true
