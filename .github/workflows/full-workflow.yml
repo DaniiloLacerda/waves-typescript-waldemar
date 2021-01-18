@@ -47,9 +47,9 @@ jobs:
     #     SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
     #   run: ./scripts/deploy.sh
 
-    - name: Deployment
-      if: github.ref == 'refs/heads/master'
-      run: git remote add umbler ssh://git@geonosis.deploy.umbler.com:9922/j370225k/danilo-surf-forecast-com.git && yes | git push umbler master
+    # - name: Deployment
+    #   if: github.ref == 'refs/heads/master'
+    #   run: git remote add umbler ssh://git@geonosis.deploy.umbler.com:9922/j370225k/danilo-surf-forecast-com.git && yes | git push umbler master
 
-      env:
-        CI: true
+    #   env:
+    #     CI: true
