@@ -11,7 +11,6 @@ export const connect = async (): Promise<Mongoose> => {
   });
 
   conn.catch(err => {
-    console.log('caiu no catch')
     console.log(err)
   });
   return conn;
