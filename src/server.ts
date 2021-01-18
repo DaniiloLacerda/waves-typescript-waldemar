@@ -10,6 +10,12 @@ import { UsersController } from './controllers/users';
 import logger from './logger';
 import expressPino from 'express-pino-logger';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import { OpenApiValidator } from 'express-openapi-validator';
+import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
+import apiSchema from './api.schema.json';
+import { apiErrorValidator } from './middlewares/api-error-validator';
+
 export class SetupServer extends Server {
   private server?: http.Server;
 
@@ -19,8 +25,10 @@ export class SetupServer extends Server {
 
   public async init(): Promise<void> {
     this.setupExpress();
+    await this.docsSetup();
     this.setupControllers();
     await this.databaseSetup();
+    this.setupErrorHandlers();
   }
 
   private setupExpress(): void {
@@ -37,6 +45,10 @@ export class SetupServer extends Server {
     );
   }
 
+  private setupErrorHandlers(): void {
+    this.app.use(apiErrorValidator);
+  }
+
   private setupControllers(): void {
     const forecastController = new ForecastController();
     const beachesController = new BeachesController();
@@ -46,6 +58,15 @@ export class SetupServer extends Server {
       beachesController,
       usersController,
     ]);
+  }
+
+  private async docsSetup(): Promise<void> {
+    this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiSchema));
+    await new OpenApiValidator({
+      apiSpec: apiSchema as OpenAPIV3.Document,
+      validateRequests: true, //we do it
+      validateResponses: true,
+    }).install(this.app);
   }
 
   public getApp(): Application {
