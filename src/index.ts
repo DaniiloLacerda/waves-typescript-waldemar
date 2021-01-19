@@ -26,7 +26,6 @@ process.on('uncaughtException', (error) => {
     const server = new SetupServer(config.get('App.port'));
     await server.init();
     server.start();
-
     const exitSignals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGQUIT'];
     exitSignals.map((sig) =>
       process.on(sig, async () => {
